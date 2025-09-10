@@ -157,9 +157,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CppMatrix.cpp" />
+    <ClCompile Include="IStreamGenerator.cpp" />
+    <ClCompile Include="RandomGenerator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CppMatrix.h" />
+    <ClInclude Include="Generator.h" />
+    <ClInclude Include="IStreamGenerator.h" />
+    <ClInclude Include="RandomGenerator.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
