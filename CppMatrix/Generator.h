@@ -2,20 +2,21 @@
 
 namespace miit::algebra
 {
-	/**
-	* @brief
-	*/
-	class Generator
-	{
-	public:
-		/**
-		* @brief
-		*/
-		virtual ~Generator() = 0 {};
+    /**
+     * @brief Абстрактный генератор значений
+     */
+    class Generator
+    {
+    public:
+        /**
+         * @brief Виртуальный деструктор
+         */
+        virtual ~Generator() = 0 {};
 
-		/**
-		* @brief
-		*/
-		virtual int generate() = 0;
-	};
+        /**
+         * @brief Генерирует значение
+         * @return сгенерированное значение
+         */
+        virtual int generate() = 0;
+    };
 }

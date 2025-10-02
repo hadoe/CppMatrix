@@ -5,24 +5,25 @@
 
 namespace miit::algebra
 {
-	/**
-	* @brief
-	*/
-	class IStreamGenerator : public Generator
-	{
-	private:
-		std::istream& in;
+    /**
+     * @brief Генератор из входного потока
+     */
+    class IStreamGenerator : public Generator
+    {
+    private:
+        std::istream& in;
 
-	public:
-		/**
-		* @brief
-		* @param in
-		*/
-		IStreamGenerator(std::istream& in = std::cin);
+    public:
+        /**
+         * @brief Конструктор
+         * @param in входной поток (по умолчанию std::cin)
+         */
+        IStreamGenerator(std::istream& in = std::cin);
 
-		/**
-		* @brief
-		*/
-		int generate() override;
-	};
+        /**
+         * @brief Читает значение из потока
+         * @return прочитанное значение
+         */
+        int generate() override;
+    };
 }
