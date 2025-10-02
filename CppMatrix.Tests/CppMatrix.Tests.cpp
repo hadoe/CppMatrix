@@ -3,6 +3,8 @@
 #include "RandomGenerator.h"
 #include "ConstantGenerator.h"
 #include "TaskExercise.h"
+#include <stdexcept>
+#include <IStreamGenerator.h>
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 

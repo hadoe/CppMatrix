@@ -1,5 +1,6 @@
 #include "TaskExercise.h"
 #include <algorithm>
+#include <stdexcept>
 
 namespace miit::algebra
 {
