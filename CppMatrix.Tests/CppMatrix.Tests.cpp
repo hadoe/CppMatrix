@@ -172,7 +172,7 @@ namespace MatrixTest
             miit::algebra::Matrix matrix{ 5, 10, 15, 20, 25, 30 };
             matrix.remove_elements_with_digit_five();
 
-            Assert::AreEqual(std::string("[10, 30]"), matrix.to_string());
+            Assert::AreEqual(std::string("[10, 20, 30]"), matrix.to_string());
         }
 
         TEST_METHOD(TransformByRule_AppliesCorrectTransformation)
@@ -227,11 +227,11 @@ namespace MatrixTest
             miit::algebra::TaskExercise exercise(5, std::move(generator));
             exercise.fill_matrix();
 
-            // Все элементы равны 5, минимальный = средний = 5
+            // пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ 5, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ = пїЅпїЅпїЅпїЅпїЅпїЅпїЅ = 5
             exercise.Task1();
             const miit::algebra::Matrix& result = exercise.get_matrix();
 
-            // Проверяем, что все элементы остались равны 5
+            // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ 5
             for (size_t i = 0; i < result.size(); ++i)
             {
                 Assert::AreEqual(5, result[i]);
@@ -254,7 +254,7 @@ namespace MatrixTest
             auto generator = std::make_unique<miit::algebra::ConstantGenerator>(1);
             miit::algebra::TaskExercise exercise(5, std::move(generator));
 
-            // Используем существующую матрицу для тестирования
+            // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
             miit::algebra::Matrix test_matrix = matrix;
             test_matrix.remove_elements_with_digit_five();
 
@@ -266,10 +266,7 @@ namespace MatrixTest
         TEST_METHOD(Task3_TransformsByRule)
         {
             miit::algebra::Matrix matrix{ 1, 2, 3, 4 };
-            auto generator = std::make_unique<miit::algebra::ConstantGenerator>(1);
-            miit::algebra::TaskExercise exercise(4, std::move(generator));
-
-            miit::algebra::Matrix result = exercise.Task3();
+            miit::algebra::Matrix result = matrix.transform_by_rule();
 
             Assert::AreEqual(1, result[0]);  // |1^2| = 1
             Assert::AreEqual(4, result[1]);  // 2*2 = 4
@@ -293,30 +290,30 @@ namespace MatrixTest
     public:
         TEST_METHOD(CompleteWorkflow)
         {
-            // Создаем матрицу с нечетным размером для Task1
+            // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ Task1
             auto generator = std::make_unique<miit::algebra::RandomGenerator>(-10, 10);
             miit::algebra::TaskExercise exercise(7, std::move(generator));
             exercise.fill_matrix();
 
-            // Выполняем Task1
+            // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ Task1
             exercise.Task1();
 
-            // Проверяем, что матрица все еще имеет правильный размер
+            // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
             Assert::AreEqual(size_t(7), exercise.get_matrix().size());
 
-            // Выполняем Task2
+            // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ Task2
             exercise.Task2();
 
-            // Выполняем Task3
+            // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ Task3
             miit::algebra::Matrix result = exercise.Task3();
 
-            // Проверяем, что результат не пустой
+            // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
             Assert::IsTrue(result.size() > 0);
         }
 
         TEST_METHOD(MultipleGenerators)
         {
-            // Тестируем разные генераторы
+            // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
             {
                 auto constant_gen = std::make_unique<miit::algebra::ConstantGenerator>(100);
                 miit::algebra::Matrix matrix1(3);
@@ -329,7 +326,7 @@ namespace MatrixTest
                 miit::algebra::Matrix matrix2(5);
                 matrix2.fill(std::move(random_gen));
 
-                // Проверяем, что все элементы в диапазоне
+                // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
                 for (size_t i = 0; i < matrix2.size(); ++i)
                 {
                     Assert::IsTrue(matrix2[i] >= -5 && matrix2[i] <= 5);

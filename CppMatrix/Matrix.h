@@ -1,4 +1,4 @@
-#pragma once
+п»ї#pragma once
 
 #include <vector>
 #include <string>
@@ -8,7 +8,7 @@
 namespace miit::algebra
 {
     /**
-     * @brief Одномерный массив (матрица-строка)
+     * @brief РћРґРЅРѕРјРµСЂРЅР°СЏ РјР°С‚СЂРёС†Р° (СЃРїРёСЃРѕРє С†РµР»С‹С… Р·РЅР°С‡РµРЅРёР№).
      */
     class Matrix
     {
@@ -17,97 +17,97 @@ namespace miit::algebra
 
     public:
         /**
-         * @brief Конструкторы по умолчанию
+         * @brief РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ.
          */
         Matrix() = default;
         Matrix(const Matrix&) = default;
         Matrix(Matrix&&) = default;
 
         /**
-         * @brief Конструктор с размером
-         * @param size размер массива
+         * @brief РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РїРѕ СЂР°Р·РјРµСЂСѓ.
+         * @param size РљРѕР»РёС‡РµСЃС‚РІРѕ СЌР»РµРјРµРЅС‚РѕРІ РјР°С‚СЂРёС†С‹.
          */
         explicit Matrix(size_t size);
 
         /**
-         * @brief Конструктор с инициализацией
-         * @param initializer список инициализации
+         * @brief РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РёР· СЃРїРёСЃРєР° РёРЅРёС†РёР°Р»РёР·Р°С†РёРё.
+         * @param initializer Р—РЅР°С‡РµРЅРёСЏ РґР»СЏ РЅР°С‡Р°Р»СЊРЅРѕР№ РёРЅРёС†РёР°Р»РёР·Р°С†РёРё.
          */
         Matrix(std::initializer_list<int> initializer);
 
         /**
-         * @brief Деструктор
+         * @brief Р”РµСЃС‚СЂСѓРєС‚РѕСЂ.
          */
         ~Matrix() = default;
 
         /**
-         * @brief Оператор присваивания
+         * @brief РћРїРµСЂР°С‚РѕСЂС‹ РїСЂРёСЃРІР°РёРІР°РЅРёСЏ.
          */
         Matrix& operator=(const Matrix&) = default;
         Matrix& operator=(Matrix&&) = default;
 
         /**
-         * @brief Оператор доступа по индексу
+         * @brief Р”РѕСЃС‚СѓРї Рє СЌР»РµРјРµРЅС‚Сѓ РїРѕ РёРЅРґРµРєСЃСѓ.
          */
         int& operator[](size_t index);
         const int& operator[](size_t index) const;
 
         /**
-         * @brief Оператор разыменования
+         * @brief Р Р°Р·С‹РјРµРЅРѕРІР°РЅРёРµ вЂ” РїРµСЂРІС‹Р№ СЌР»РµРјРµРЅС‚.
          */
         int& operator*();
         const int& operator*() const;
 
         /**
-         * @brief Операторы сдвига
+         * @brief Р¦РёРєР»РёС‡РµСЃРєРёР№ СЃРґРІРёРі РІР»РµРІРѕ.
          */
         Matrix operator<<(int shift) const;
         Matrix operator>>(int shift) const;
 
         /**
-         * @brief Получить размер массива
+         * @brief Р Р°Р·РјРµСЂ РјР°С‚СЂРёС†С‹ (С‡РёСЃР»Рѕ СЌР»РµРјРµРЅС‚РѕРІ).
          */
         size_t size() const;
 
         /**
-         * @brief Преобразовать в строку
+         * @brief РџСЂРµРґСЃС‚Р°РІР»РµРЅРёРµ РІ РІРёРґРµ СЃС‚СЂРѕРєРё.
          */
         std::string to_string() const;
 
         /**
-         * @brief Заполнить массив с помощью генератора
-         * @param generator генератор значений
+         * @brief Р—Р°РїРѕР»РЅРёС‚СЊ РјР°С‚СЂРёС†Сѓ Р·РЅР°С‡РµРЅРёСЏРјРё РёР· РіРµРЅРµСЂР°С‚РѕСЂР°.
+         * @param generator РЈРєР°Р·Р°С‚РµР»СЊ РЅР° РіРµРЅРµСЂР°С‚РѕСЂ Р·РЅР°С‡РµРЅРёР№.
          */
         void fill(std::unique_ptr<Generator> generator);
 
         /**
-         * @brief Получить минимальный элемент
+         * @brief РњРёРЅРёРјР°Р»СЊРЅС‹Р№ СЌР»РµРјРµРЅС‚.
          */
         int min() const;
 
         /**
-         * @brief Получить средний элемент (для нечетного размера)
+         * @brief РЎСЂРµРґРёРЅРЅС‹Р№ СЌР»РµРјРµРЅС‚ (РґР»СЏ РЅРµС‡С‘С‚РЅРѕРіРѕ СЂР°Р·РјРµСЂР°).
          */
         int middle() const;
 
         /**
-         * @brief Получить среднее арифметическое
+         * @brief РЎСЂРµРґРЅРµРµ Р°СЂРёС„РјРµС‚РёС‡РµСЃРєРѕРµ.
          */
         double average() const;
 
         /**
-         * @brief Проверить, содержит ли число цифру 5
-         * @param number число для проверки
+         * @brief РџСЂРѕРІРµСЂРєР°, СЃРѕРґРµСЂР¶РёС‚ Р»Рё С‡РёСЃР»Рѕ С†РёС„СЂСѓ 5.
+         * @param number Р§РёСЃР»Рѕ РґР»СЏ РїСЂРѕРІРµСЂРєРё.
          */
         static bool contains_digit_five(int number);
 
         /**
-         * @brief Удалить элементы, содержащие цифру 5
+         * @brief РЈРґР°Р»РёС‚СЊ СЌР»РµРјРµРЅС‚С‹, СЃРѕРґРµСЂР¶Р°С‰РёРµ С†РёС„СЂСѓ 5.
          */
         void remove_elements_with_digit_five();
 
         /**
-         * @brief Применить преобразование по правилу задания 3
+         * @brief РўСЂР°РЅСЃС„РѕСЂРјР°С†РёСЏ РїРѕ РїСЂР°РІРёР»Сѓ РёР· Р·Р°РґР°РЅРёСЏ 3.
          */
         Matrix transform_by_rule() const;
     };

@@ -1,4 +1,4 @@
-#include <iostream>
+п»ї#include <iostream>
 #include <memory>
 #include "Matrix.h"
 #include "RandomGenerator.h"
@@ -8,94 +8,174 @@
 
 using namespace miit::algebra;
 
-void demonstrate_matrix_operations()
+void run_interactive()
 {
-    std::cout << "=== Демонстрация операций с матрицей ===" << std::endl;
+    std::cout << "=== Р РµР¶РёРј РІР·Р°РёРјРѕРґРµР№СЃС‚РІРёСЏ ===" << std::endl;
 
-    // Создание и заполнение матрицы
+    size_t n = 0;
+    std::cout << "Р’РІРµРґРёС‚Рµ СЂР°Р·РјРµСЂ РјР°СЃСЃРёРІР°: ";
+    if (!(std::cin >> n) || n == 0)
+    {
+        std::cout << "РќРµРєРѕСЂСЂРµРєС‚РЅС‹Р№ СЂР°Р·РјРµСЂ." << std::endl;
+        return;
+    }
+
+    Matrix matrix(n);
+    std::cout << "Р’РІРµРґРёС‚Рµ " << n << " С†РµР»С‹С… Р·РЅР°С‡РµРЅРёР№: ";
+    for (size_t i = 0; i < n; ++i)
+    {
+        int v = 0;
+        if (!(std::cin >> v))
+        {
+            std::cout << "РћС€РёР±РєР° РІРІРѕРґР°." << std::endl;
+            return;
+        }
+        matrix[i] = v;
+    }
+
+    std::cout << "Р’С‹Р±РµСЂРёС‚Рµ Р·Р°РґР°РЅРёРµ (1, 2 РёР»Рё 3): ";
+    int task = 0;
+    if (!(std::cin >> task))
+    {
+        std::cout << "РћС€РёР±РєР° РІРІРѕРґР° РЅРѕРјРµСЂР° Р·Р°РґР°РЅРёСЏ." << std::endl;
+        return;
+    }
+
+    if (task == 1)
+    {
+        if (matrix.size() % 2 == 0)
+        {
+            std::cout << "Р”Р»СЏ Р·Р°РґР°РЅРёСЏ 1 СЂР°Р·РјРµСЂ РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ РЅРµС‡С‘С‚РЅС‹Рј." << std::endl;
+            return;
+        }
+
+        int min_val = matrix.min();
+        int middle_val = matrix.middle();
+        for (size_t i = 0; i < matrix.size(); ++i)
+        {
+            if (matrix[i] == min_val)
+            {
+                matrix[i] = middle_val;
+                break;
+            }
+        }
+        std::cout << "Р РµР·СѓР»СЊС‚Р°С‚ (Task1): " << matrix.to_string() << std::endl;
+    }
+    else if (task == 2)
+    {
+        matrix.remove_elements_with_digit_five();
+        std::cout << "Р РµР·СѓР»СЊС‚Р°С‚ (Task2): " << matrix.to_string() << std::endl;
+    }
+    else if (task == 3)
+    {
+        Matrix result = matrix.transform_by_rule();
+        std::cout << "Р РµР·СѓР»СЊС‚Р°С‚ (Task3): " << result.to_string() << std::endl;
+    }
+    else
+    {
+        std::cout << "РќРµРёР·РІРµСЃС‚РЅРѕРµ Р·Р°РґР°РЅРёРµ." << std::endl;
+    }
+
+    std::cout << std::endl;
+}
+
+void demonstrate_basic_operations()
+{
+    std::cout << "=== Basic Matrix Operations ===" << std::endl;
+
     Matrix matrix{ 1, 2, 3, 4, 5 };
-    std::cout << "Исходная матрица: " << matrix.to_string() << std::endl;
+    std::cout << "Original: " << matrix.to_string() << std::endl;
 
-    // Оператор доступа по индексу
+    // Index operator
     matrix[2] = 10;
-    std::cout << "После matrix[2] = 10: " << matrix.to_string() << std::endl;
+    std::cout << "After matrix[2] = 10: " << matrix.to_string() << std::endl;
 
-    // Оператор разыменования
-    std::cout << "Первый элемент (*matrix): " << *matrix << std::endl;
+    // Dereference
+    std::cout << "First element: " << *matrix << std::endl;
 
-    // Операторы сдвига
-    Matrix left_shifted = matrix << 2;
-    std::cout << "Сдвиг влево на 2: " << left_shifted.to_string() << std::endl;
+    // Shift operations
+    Matrix left = matrix << 2;
+    std::cout << "Left shift 2: " << left.to_string() << std::endl;
 
-    Matrix right_shifted = matrix >> 1;
-    std::cout << "Сдвиг вправо на 1: " << right_shifted.to_string() << std::endl;
+    Matrix right = matrix >> 1;
+    std::cout << "Right shift 1: " << right.to_string() << std::endl;
 
     std::cout << std::endl;
 }
 
 void demonstrate_generators()
 {
-    std::cout << "=== Демонстрация генераторов ===" << std::endl;
+    std::cout << "=== Generators Demo ===" << std::endl;
 
-    // Генератор случайных чисел
-    auto random_gen = std::make_unique<RandomGenerator>(-1000, 1000);
+    // Random generator
+    auto random_gen = std::make_unique<RandomGenerator>(-10, 10);
     Matrix random_matrix(5);
     random_matrix.fill(std::move(random_gen));
-    std::cout << "Матрица со случайными числами: " << random_matrix.to_string() << std::endl;
+    std::cout << "Random matrix: " << random_matrix.to_string() << std::endl;
 
-    // Генератор постоянных значений
+    // Constant generator
     auto constant_gen = std::make_unique<ConstantGenerator>(7);
     Matrix constant_matrix(4);
     constant_matrix.fill(std::move(constant_gen));
-    std::cout << "Матрица с постоянными значениями: " << constant_matrix.to_string() << std::endl;
+    std::cout << "Constant matrix: " << constant_matrix.to_string() << std::endl;
 
     std::cout << std::endl;
 }
 
 void demonstrate_tasks()
 {
-    std::cout << "=== Демонстрация выполнения заданий ===" << std::endl;
+    std::cout << "=== Tasks Demo ===" << std::endl;
 
-    // Задание с нечетным размером для Task1
-    auto gen1 = std::make_unique<RandomGenerator>(-100, 100);
-    TaskExercise exercise1(7, std::move(gen1));
+    // Task 1 with odd size
+    auto gen1 = std::make_unique<ConstantGenerator>(3);
+    TaskExercise exercise1(5, std::move(gen1)); // Odd size for Task1
     exercise1.fill_matrix();
 
-    std::cout << "Матрица для заданий (нечетный размер): " << exercise1.get_matrix().to_string() << std::endl;
-
-    // Выполнение Task1
+    std::cout << "Before Task1: " << exercise1.get_matrix().to_string() << std::endl;
     exercise1.Task1();
-    std::cout << "После Task1 (замена минимального на средний): " << exercise1.get_matrix().to_string() << std::endl;
+    std::cout << "After Task1: " << exercise1.get_matrix().to_string() << std::endl;
 
-    // Задание с четным размером для Task2 и Task3
-    auto gen2 = std::make_unique<ConstantGenerator>(15); // содержит цифру 5
-    TaskExercise exercise2(6, std::move(gen2));
-    exercise2.fill_matrix();
+    // Task 2
+    Matrix matrix_for_task2{ 15, 20, 25, 30, 35 };
+    auto gen2 = std::make_unique<ConstantGenerator>(1);
+    TaskExercise exercise2(5, std::move(gen2));
+    // Use pre-filled matrix for demonstration
+    Matrix demo_matrix = matrix_for_task2;
+    std::cout << "Before Task2: " << demo_matrix.to_string() << std::endl;
+    demo_matrix.remove_elements_with_digit_five();
+    std::cout << "After Task2: " << demo_matrix.to_string() << std::endl;
 
-    std::cout << "Матрица для Task2 и Task3: " << exercise2.get_matrix().to_string() << std::endl;
-
-    // Выполнение Task2
-    exercise2.Task2();
-    std::cout << "После Task2 (удаление элементов с цифрой 5): " << exercise2.get_matrix().to_string() << std::endl;
-
-    // Выполнение Task3
-    Matrix result3 = exercise2.Task3();
-    std::cout << "После Task3 (преобразование по правилу): " << result3.to_string() << std::endl;
+    // Task 3
+    Matrix matrix_for_task3{ 1, 2, 3, 4 };
+    Matrix result = matrix_for_task3.transform_by_rule();
+    std::cout << "Task3 result: " << result.to_string() << std::endl;
 }
 
 int main()
 {
-    try
+    setlocale(LC_ALL, "ru-RU");
+
+    std::cout << "Р’С‹Р±РµСЂРёС‚Рµ СЂРµР¶РёРј: 1 вЂ” РґРµРјРѕРЅСЃС‚СЂР°С†РёСЏ, 2 вЂ” РёРЅС‚РµСЂР°РєС‚РёРІРЅС‹Р№: ";
+    int mode = 0;
+    if (!(std::cin >> mode))
     {
-        demonstrate_matrix_operations();
+        std::cerr << "РќРµРєРѕСЂСЂРµРєС‚РЅС‹Р№ РІРІРѕРґ." << std::endl;
+        return 1;
+    }
+
+    switch (mode)
+    {
+    case 1:
+        demonstrate_basic_operations();
         demonstrate_generators();
         demonstrate_tasks();
-
-        std::cout << "=== Демонстрация завершена ===" << std::endl;
-    }
-    catch (const std::exception& e)
-    {
-        std::cerr << "Ошибка: " << e.what() << std::endl;
+        std::cout << "=== Demo completed successfully ===" << std::endl;
+        break;
+    case 2:
+        run_interactive();
+        break;
+    default:
+        std::cout << "РќРµРёР·РІРµСЃС‚РЅС‹Р№ СЂРµР¶РёРј." << std::endl;
         return 1;
     }
 

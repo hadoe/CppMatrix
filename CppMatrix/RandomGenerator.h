@@ -1,4 +1,4 @@
-#pragma once
+п»ї#pragma once
 
 #include "Generator.h"
 #include <random>
@@ -6,7 +6,7 @@
 namespace miit::algebra
 {
     /**
-     * @brief Генератор случайных чисел
+     * @brief Р“РµРЅРµСЂР°С‚РѕСЂ СЃР»СѓС‡Р°Р№РЅС‹С… С†РµР»С‹С… С‡РёСЃРµР».
      */
     class RandomGenerator : public Generator
     {
@@ -16,15 +16,15 @@ namespace miit::algebra
 
     public:
         /**
-         * @brief Конструктор
-         * @param min минимальное значение
-         * @param max максимальное значение
+         * @brief РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ.
+         * @param min РњРёРЅРёРјР°Р»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РґРёР°РїР°Р·РѕРЅР° (РІРєР»СЋС‡РёС‚РµР»СЊРЅРѕ).
+         * @param max РњР°РєСЃРёРјР°Р»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РґРёР°РїР°Р·РѕРЅР° (РІРєР»СЋС‡РёС‚РµР»СЊРЅРѕ).
          */
         RandomGenerator(const int min, const int max);
 
         /**
-         * @brief Генерирует случайное число
-         * @return случайное число в диапазоне [min, max]
+         * @brief РЎРіРµРЅРµСЂРёСЂРѕРІР°С‚СЊ СЃР»СѓС‡Р°Р№РЅРѕРµ Р·РЅР°С‡РµРЅРёРµ.
+         * @return РЎР»СѓС‡Р°Р№РЅРѕРµ С†РµР»РѕРµ РІ РґРёР°РїР°Р·РѕРЅРµ [min, max].
          */
         int generate() override;
     };

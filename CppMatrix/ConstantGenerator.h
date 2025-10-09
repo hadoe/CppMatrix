@@ -1,11 +1,11 @@
-#pragma once
+п»ї#pragma once
 
 #include "Generator.h"
 
 namespace miit::algebra
 {
     /**
-     * @brief Генератор постоянных значений
+     * @brief Р“РµРЅРµСЂР°С‚РѕСЂ, РІРѕР·РІСЂР°С‰Р°СЋС‰РёР№ РїРѕСЃС‚РѕСЏРЅРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ.
      */
     class ConstantGenerator : public Generator
     {
@@ -14,14 +14,14 @@ namespace miit::algebra
 
     public:
         /**
-         * @brief Конструктор
-         * @param value постоянное значение
+         * @brief РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ.
+         * @param value РџРѕСЃС‚РѕСЏРЅРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ, РєРѕС‚РѕСЂРѕРµ Р±СѓРґРµС‚ РІРѕР·РІСЂР°С‰Р°С‚СЊ РіРµРЅРµСЂР°С‚РѕСЂ.
          */
         ConstantGenerator(const int value);
 
         /**
-         * @brief Возвращает постоянное значение
-         * @return постоянное значение
+         * @brief Р’РµСЂРЅСѓС‚СЊ РїРѕСЃС‚РѕСЏРЅРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ.
+         * @return Р—Р°СЂР°РЅРµРµ Р·Р°РґР°РЅРЅРѕРµ РєРѕРЅСЃС‚Р°РЅС‚РЅРѕРµ С‡РёСЃР»Рѕ.
          */
         int generate() override;
     };

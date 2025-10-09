@@ -1,4 +1,4 @@
-#pragma once
+п»ї#pragma once
 
 #include "Generator.h"
 #include <iostream>
@@ -6,7 +6,7 @@
 namespace miit::algebra
 {
     /**
-     * @brief Генератор из входного потока
+     * @brief Р“РµРЅРµСЂР°С‚РѕСЂ, С‡РёС‚Р°СЋС‰РёР№ Р·РЅР°С‡РµРЅРёСЏ РёР· РІС…РѕРґРЅРѕРіРѕ РїРѕС‚РѕРєР°.
      */
     class IStreamGenerator : public Generator
     {
@@ -15,14 +15,14 @@ namespace miit::algebra
 
     public:
         /**
-         * @brief Конструктор
-         * @param in входной поток (по умолчанию std::cin)
+         * @brief РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ.
+         * @param in Р’С…РѕРґРЅРѕР№ РїРѕС‚РѕРє (РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ std::cin).
          */
         IStreamGenerator(std::istream& in = std::cin);
 
         /**
-         * @brief Читает значение из потока
-         * @return прочитанное значение
+         * @brief РЎС‡РёС‚Р°С‚СЊ СЃР»РµРґСѓСЋС‰РµРµ Р·РЅР°С‡РµРЅРёРµ РёР· РїРѕС‚РѕРєР°.
+         * @return РџСЂРѕС‡РёС‚Р°РЅРЅРѕРµ РёР· РїРѕС‚РѕРєР° С†РµР»РѕРµ С‡РёСЃР»Рѕ.
          */
         int generate() override;
     };
