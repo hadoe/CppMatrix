@@ -6,6 +6,8 @@
 #include "ConstantGenerator.h"
 #include "TaskExercise.h"
 
+//Перед изменением матрицы создать её копию и уже с ней проводить операции
+
 using namespace miit::algebra;
 
 void run_interactive()
@@ -24,13 +26,13 @@ void run_interactive()
     std::cout << "Введите " << n << " целых значений: ";
     for (size_t i = 0; i < n; ++i)
     {
-        int v = 0;
-        if (!(std::cin >> v))
+        int value = 0;
+        if (!(std::cin >> value))
         {
             std::cout << "Ошибка ввода." << std::endl;
             return;
         }
-        matrix[i] = v;
+        matrix[i] = value;
     }
 
     std::cout << "Выберите задание (1, 2 или 3): ";
@@ -51,24 +53,32 @@ void run_interactive()
 
         int min_val = matrix.min();
         int middle_val = matrix.middle();
-        for (size_t i = 0; i < matrix.size(); ++i)
+        // Создаем копию матрицы
+        Matrix matrix_copy = matrix;
+        for (size_t i = 0; i < matrix_copy.size(); ++i)
         {
-            if (matrix[i] == min_val)
+            if (matrix_copy[i] == min_val)
             {
-                matrix[i] = middle_val;
+                matrix_copy[i] = middle_val;
                 break;
             }
         }
-        std::cout << "Результат (Task1): " << matrix.to_string() << std::endl;
+        std::cout << "Исходная матрица: " << matrix.to_string() << std::endl;
+        std::cout << "Результат (Task1): " << matrix_copy.to_string() << std::endl;
     }
     else if (task == 2)
     {
-        matrix.remove_elements_with_digit_five();
-        std::cout << "Результат (Task2): " << matrix.to_string() << std::endl;
+        // Создаем копию матрицы перед изменением
+        Matrix matrix_copy = matrix;
+        matrix_copy.remove_elements_with_digit_five();
+        std::cout << "Исходная матрица: " << matrix.to_string() << std::endl;
+        std::cout << "Результат (Task2): " << matrix_copy.to_string() << std::endl;
     }
     else if (task == 3)
     {
+        // transform_by_rule уже возвращает новую матрицу, но для консистентности покажем исходную
         Matrix result = matrix.transform_by_rule();
+        std::cout << "Исходная матрица: " << matrix.to_string() << std::endl;
         std::cout << "Результат (Task3): " << result.to_string() << std::endl;
     }
     else
@@ -78,6 +88,7 @@ void run_interactive()
 
     std::cout << std::endl;
 }
+
 
 void demonstrate_basic_operations()
 {
@@ -127,27 +138,27 @@ void demonstrate_tasks()
     std::cout << "=== Tasks Demo ===" << std::endl;
 
     // Task 1 with odd size
-    auto gen1 = std::make_unique<ConstantGenerator>(3);
-    TaskExercise exercise1(5, std::move(gen1)); // Odd size for Task1
+    auto gen1 = std::make_unique<RandomGenerator>(-10, 10);
+    TaskExercise exercise1(5, std::move(gen1));
     exercise1.fill_matrix();
 
     std::cout << "Before Task1: " << exercise1.get_matrix().to_string() << std::endl;
+    // Сохраняем исходную матрицу перед изменением
+    Matrix original1 = exercise1.get_matrix();
     exercise1.Task1();
     std::cout << "After Task1: " << exercise1.get_matrix().to_string() << std::endl;
 
     // Task 2
     Matrix matrix_for_task2{ 15, 20, 25, 30, 35 };
-    auto gen2 = std::make_unique<ConstantGenerator>(1);
-    TaskExercise exercise2(5, std::move(gen2));
-    // Use pre-filled matrix for demonstration
     Matrix demo_matrix = matrix_for_task2;
-    std::cout << "Before Task2: " << demo_matrix.to_string() << std::endl;
+    std::cout << "Before Task2: " << matrix_for_task2.to_string() << std::endl;
     demo_matrix.remove_elements_with_digit_five();
     std::cout << "After Task2: " << demo_matrix.to_string() << std::endl;
 
     // Task 3
     Matrix matrix_for_task3{ 1, 2, 3, 4 };
     Matrix result = matrix_for_task3.transform_by_rule();
+    std::cout << "Original matrix: " << matrix_for_task3.to_string() << std::endl;
     std::cout << "Task3 result: " << result.to_string() << std::endl;
 }
 

@@ -20,7 +20,15 @@ namespace miit::algebra
          * @brief Конструктор по умолчанию.
          */
         Matrix() = default;
+
+        /**
+         * @brief Конструктор копирования.
+         */
         Matrix(const Matrix&) = default;
+
+        /**
+         * @brief Конструктор перемещения.
+         */
         Matrix(Matrix&&) = default;
 
         /**
@@ -41,9 +49,13 @@ namespace miit::algebra
         ~Matrix() = default;
 
         /**
-         * @brief Операторы присваивания.
+         * @brief Оператор присваивания копированием.
          */
         Matrix& operator=(const Matrix&) = default;
+
+        /**
+         * @brief Оператор присваивания перемещением.
+         */
         Matrix& operator=(Matrix&&) = default;
 
         /**
@@ -62,6 +74,10 @@ namespace miit::algebra
          * @brief Циклический сдвиг влево.
          */
         Matrix operator<<(int shift) const;
+
+        /**
+         * @brief Циклический сдвиг вправо.
+         */
         Matrix operator>>(int shift) const;
 
         /**
