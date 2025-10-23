@@ -160,6 +160,7 @@ void demonstrate_tasks()
     Matrix result = matrix_for_task3.transform_by_rule();
     std::cout << "Original matrix: " << matrix_for_task3.to_string() << std::endl;
     std::cout << "Task3 result: " << result.to_string() << std::endl;
+
 }
 
 int main()
