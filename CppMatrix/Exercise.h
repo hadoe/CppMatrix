@@ -38,20 +38,5 @@ namespace miit::algebra
          * @brief Доступ к внутренней матрице (только чтение).
          */
         const Matrix& get_matrix() const;
-
-        /**
-         * @brief Задание 1: заменить минимальный элемент на срединный.
-         */
-        virtual void Task1();
-
-        /**
-         * @brief Задание 2: удалить элементы с цифрой 5.
-         */
-        virtual void Task2();
-
-        /**
-         * @brief Задание 3: вернуть матрицу, трансформированную по правилу.
-         */
-        virtual Matrix Task3() const;
     };
 }

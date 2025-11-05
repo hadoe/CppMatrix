@@ -25,7 +25,9 @@
     <ClInclude Include="IStreamGenerator.h" />
     <ClInclude Include="Matrix.h" />
     <ClInclude Include="RandomGenerator.h" />
-    <ClInclude Include="TaskExercise.h" />
+    <ClInclude Include="Task1Exercise.h" />
+    <ClInclude Include="Task2Exercise.h" />
+    <ClInclude Include="Task3Exercise.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ConstantGenerator.cpp" />
@@ -33,7 +35,9 @@
     <ClCompile Include="IStreamGenerator.cpp" />
     <ClCompile Include="Matrix.cpp" />
     <ClCompile Include="RandomGenerator.cpp" />
-    <ClCompile Include="TaskExercise.cpp" />
+    <ClCompile Include="Task1Exercise.cpp" />
+    <ClCompile Include="Task2Exercise.cpp" />
+    <ClCompile Include="Task3Exercise.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

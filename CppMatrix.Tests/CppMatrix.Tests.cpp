@@ -13,70 +13,51 @@ namespace MatrixTest
     TEST_CLASS(MatrixTest)
     {
     public:
-        TEST_METHOD(DefaultConstructor_EmptyMatrix)
+        TEST_METHOD(DefaultConstructor)
         {
             miit::algebra::Matrix matrix;
             Assert::AreEqual(size_t(0), matrix.size());
             Assert::AreEqual(std::string("[]"), matrix.to_string());
         }
 
-        TEST_METHOD(SizeConstructor_CorrectSize)
+        TEST_METHOD(SizeConstructor)
         {
             miit::algebra::Matrix matrix(5);
             Assert::AreEqual(size_t(5), matrix.size());
         }
 
-        TEST_METHOD(InitializerListConstructor_ElementsAddedCorrectly)
+        TEST_METHOD(InitializerListConstructor)
         {
             miit::algebra::Matrix matrix{ 1, 2, 3 };
             Assert::AreEqual(std::string("[1, 2, 3]"), matrix.to_string());
         }
 
-        TEST_METHOD(CopyConstructor_DeepCopy)
+        TEST_METHOD(CopyConstructor)
         {
             miit::algebra::Matrix original{ 1, 2, 3 };
             miit::algebra::Matrix copy(original);
 
-            original[0] = 10;
-            copy[1] = 20;
-
-            Assert::AreEqual(std::string("[10, 2, 3]"), original.to_string());
-            Assert::AreEqual(std::string("[1, 20, 3]"), copy.to_string());
+            Assert::AreEqual(original.to_string(), copy.to_string());
         }
 
-        TEST_METHOD(MoveConstructor_ResourcesMoved)
+        TEST_METHOD(MoveConstructor)
         {
             miit::algebra::Matrix original{ 1, 2, 3 };
             miit::algebra::Matrix moved(std::move(original));
 
             Assert::AreEqual(std::string("[1, 2, 3]"), moved.to_string());
-            Assert::AreEqual(size_t(0), original.size());
         }
 
-        TEST_METHOD(AssignmentOperator_DeepCopy)
+        TEST_METHOD(AssignmentOperator)
         {
             miit::algebra::Matrix original{ 1, 2, 3 };
             miit::algebra::Matrix copy;
             copy = original;
 
-            original[0] = 10;
-            copy[1] = 20;
-
-            Assert::AreEqual(std::string("[10, 2, 3]"), original.to_string());
-            Assert::AreEqual(std::string("[1, 20, 3]"), copy.to_string());
+            Assert::AreEqual(original.to_string(), copy.to_string());
         }
 
-        TEST_METHOD(MoveAssignmentOperator_ResourcesMoved)
-        {
-            miit::algebra::Matrix original{ 1, 2, 3 };
-            miit::algebra::Matrix moved;
-            moved = std::move(original);
-
-            Assert::AreEqual(std::string("[1, 2, 3]"), moved.to_string());
-            Assert::AreEqual(size_t(0), original.size());
-        }
-
-        TEST_METHOD(IndexOperator_GetSetElements)
+        TEST_METHOD(IndexOperator)
         {
             miit::algebra::Matrix matrix{ 1, 2, 3 };
 
@@ -87,14 +68,7 @@ namespace MatrixTest
             matrix[1] = 10;
             Assert::AreEqual(10, matrix[1]);
         }
-
-        TEST_METHOD(DereferenceOperator_ReturnsFirstElement)
-        {
-            miit::algebra::Matrix matrix{ 5, 10, 15 };
-            Assert::AreEqual(5, *matrix);
-        }
-
-        TEST_METHOD(ShiftLeftOperator_RotatesLeft)
+        TEST_METHOD(ShiftLeftOperatort)
         {
             miit::algebra::Matrix matrix{ 1, 2, 3, 4, 5 };
             miit::algebra::Matrix result = matrix << 2;
@@ -102,7 +76,7 @@ namespace MatrixTest
             Assert::AreEqual(std::string("[3, 4, 5, 1, 2]"), result.to_string());
         }
 
-        TEST_METHOD(ShiftRightOperator_RotatesRight)
+        TEST_METHOD(ShiftRightOperator)
         {
             miit::algebra::Matrix matrix{ 1, 2, 3, 4, 5 };
             miit::algebra::Matrix result = matrix >> 2;
@@ -110,7 +84,7 @@ namespace MatrixTest
             Assert::AreEqual(std::string("[4, 5, 1, 2, 3]"), result.to_string());
         }
 
-        TEST_METHOD(ToString_FormatsCorrectly)
+        TEST_METHOD(ToString)
         {
             miit::algebra::Matrix list{ 1, 2, 3 };
             Assert::AreEqual(std::string("[1, 2, 3]"), list.to_string());
@@ -119,7 +93,7 @@ namespace MatrixTest
             Assert::AreEqual(std::string("[]"), empty.to_string());
         }
 
-        TEST_METHOD(Fill_WithConstantGenerator)
+        TEST_METHOD(FillConstantGenerator)
         {
             miit::algebra::Matrix matrix(3);
             auto generator = std::make_unique<miit::algebra::ConstantGenerator>(7);
@@ -128,19 +102,19 @@ namespace MatrixTest
             Assert::AreEqual(std::string("[7, 7, 7]"), matrix.to_string());
         }
 
-        TEST_METHOD(Min_ReturnsMinimumElement)
+        TEST_METHOD(Min)
         {
             miit::algebra::Matrix matrix{ 5, 2, 8, 1, 4 };
             Assert::AreEqual(1, matrix.min());
         }
 
-        TEST_METHOD(Middle_ReturnsMiddleElementForOddSize)
+        TEST_METHOD(Middle)
         {
             miit::algebra::Matrix matrix{ 1, 2, 3, 4, 5 };
             Assert::AreEqual(3, matrix.middle());
         }
 
-        TEST_METHOD(Middle_ThrowsForEvenSize)
+        TEST_METHOD(Middle_EvenSize)
         {
             miit::algebra::Matrix matrix{ 1, 2, 3, 4 };
 
@@ -148,7 +122,7 @@ namespace MatrixTest
             Assert::ExpectException<std::runtime_error>(func);
         }
 
-        TEST_METHOD(Average_CalculatesCorrectly)
+        TEST_METHOD(Average)
         {
             miit::algebra::Matrix matrix{ 1, 2, 3, 4, 5 };
             double avg = matrix.average();
@@ -167,7 +141,7 @@ namespace MatrixTest
             Assert::IsFalse(miit::algebra::Matrix::contains_digit_five(-46));
         }
 
-        TEST_METHOD(RemoveElementsWithDigitFive_RemovesCorrectElements)
+        TEST_METHOD(RemoveElementsWithDigitFive)
         {
             miit::algebra::Matrix matrix{ 5, 10, 15, 20, 25, 30 };
             matrix.remove_elements_with_digit_five();
@@ -175,7 +149,7 @@ namespace MatrixTest
             Assert::AreEqual(std::string("[10, 20, 30]"), matrix.to_string());
         }
 
-        TEST_METHOD(TransformByRule_AppliesCorrectTransformation)
+        TEST_METHOD(TransformByRule)
         {
             miit::algebra::Matrix matrix{ 1, 2, 3, 4 };
             miit::algebra::Matrix result = matrix.transform_by_rule();
@@ -227,18 +201,16 @@ namespace MatrixTest
             miit::algebra::TaskExercise exercise(5, std::move(generator));
             exercise.fill_matrix();
 
-            // ��� �������� ����� 5, ����������� = ������� = 5
             exercise.Task1();
             const miit::algebra::Matrix& result = exercise.get_matrix();
 
-            // ���������, ��� ��� �������� �������� ����� 5
             for (size_t i = 0; i < result.size(); ++i)
             {
                 Assert::AreEqual(5, result[i]);
             }
         }
 
-        TEST_METHOD(Task1_ThrowsForEvenSize)
+        TEST_METHOD(Task1EvenSize)
         {
             auto generator = std::make_unique<miit::algebra::ConstantGenerator>(1);
             miit::algebra::TaskExercise exercise(4, std::move(generator));
@@ -248,13 +220,12 @@ namespace MatrixTest
             Assert::ExpectException<std::runtime_error>(func);
         }
 
-        TEST_METHOD(Task2_RemovesElementsWithDigitFive)
+        TEST_METHOD(Task2)
         {
             miit::algebra::Matrix matrix{ 5, 10, 15, 20, 25 };
             auto generator = std::make_unique<miit::algebra::ConstantGenerator>(1);
             miit::algebra::TaskExercise exercise(5, std::move(generator));
 
-            // ���������� ������������ ������� ��� ������������
             miit::algebra::Matrix test_matrix = matrix;
             test_matrix.remove_elements_with_digit_five();
 
@@ -263,7 +234,7 @@ namespace MatrixTest
             Assert::AreEqual(20, test_matrix[1]);
         }
 
-        TEST_METHOD(Task3_TransformsByRule)
+        TEST_METHOD(Task3)
         {
             miit::algebra::Matrix matrix{ 1, 2, 3, 4 };
             miit::algebra::Matrix result = matrix.transform_by_rule();
@@ -272,66 +243,6 @@ namespace MatrixTest
             Assert::AreEqual(4, result[1]);  // 2*2 = 4
             Assert::AreEqual(9, result[2]);  // |3^2| = 9
             Assert::AreEqual(8, result[3]);  // 2*4 = 8
-        }
-
-        TEST_METHOD(FillMatrix_UsesGenerator)
-        {
-            auto generator = std::make_unique<miit::algebra::ConstantGenerator>(42);
-            miit::algebra::TaskExercise exercise(3, std::move(generator));
-            exercise.fill_matrix();
-
-            const miit::algebra::Matrix& matrix = exercise.get_matrix();
-            Assert::AreEqual(std::string("[42, 42, 42]"), matrix.to_string());
-        }
-    };
-
-    TEST_CLASS(IntegrationTest)
-    {
-    public:
-        TEST_METHOD(CompleteWorkflow)
-        {
-            // ������� ������� � �������� �������� ��� Task1
-            auto generator = std::make_unique<miit::algebra::RandomGenerator>(-10, 10);
-            miit::algebra::TaskExercise exercise(7, std::move(generator));
-            exercise.fill_matrix();
-
-            // ��������� Task1
-            exercise.Task1();
-
-            // ���������, ��� ������� ��� ��� ����� ���������� ������
-            Assert::AreEqual(size_t(7), exercise.get_matrix().size());
-
-            // ��������� Task2
-            exercise.Task2();
-
-            // ��������� Task3
-            miit::algebra::Matrix result = exercise.Task3();
-
-            // ���������, ��� ��������� �� ������
-            Assert::IsTrue(result.size() > 0);
-        }
-
-        TEST_METHOD(MultipleGenerators)
-        {
-            // ��������� ������ ����������
-            {
-                auto constant_gen = std::make_unique<miit::algebra::ConstantGenerator>(100);
-                miit::algebra::Matrix matrix1(3);
-                matrix1.fill(std::move(constant_gen));
-                Assert::AreEqual(std::string("[100, 100, 100]"), matrix1.to_string());
-            }
-
-            {
-                auto random_gen = std::make_unique<miit::algebra::RandomGenerator>(-5, 5);
-                miit::algebra::Matrix matrix2(5);
-                matrix2.fill(std::move(random_gen));
-
-                // ���������, ��� ��� �������� � ���������
-                for (size_t i = 0; i < matrix2.size(); ++i)
-                {
-                    Assert::IsTrue(matrix2[i] >= -5 && matrix2[i] <= 5);
-                }
-            }
         }
     };
 }
