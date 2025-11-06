@@ -1,4 +1,4 @@
-#include "Task2Exercise.h"
+п»ї#include "Task2Exercise.h"
 #include <cmath>
 #include <algorithm>
 
@@ -15,14 +15,14 @@ namespace miit::algebra
             }
         }
 
-        // Создаем новую матрицу с отфильтрованными данными
+        // РЎРѕР·РґР°РµРј РЅРѕРІСѓСЋ РјР°С‚СЂРёС†Сѓ СЃ РѕС‚С„РёР»СЊС‚СЂРѕРІР°РЅРЅС‹РјРё РґР°РЅРЅС‹РјРё
         Matrix new_matrix(new_data.size());
         for (size_t i = 0; i < new_data.size(); ++i)
         {
             new_matrix[i] = new_data[i];
         }
 
-        // Заменяем исходную матрицу на отфильтрованную
+        // Р—Р°РјРµРЅСЏРµРј РёСЃС…РѕРґРЅСѓСЋ РјР°С‚СЂРёС†Сѓ РЅР° РѕС‚С„РёР»СЊС‚СЂРѕРІР°РЅРЅСѓСЋ
         matrix = new_matrix;
     }
 

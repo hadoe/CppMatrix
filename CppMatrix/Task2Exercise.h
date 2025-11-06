@@ -1,11 +1,11 @@
-#pragma once
+п»ї#pragma once
 #include "Exercise.h"
 #include <vector>
 
 namespace miit::algebra
 {
     /**
-     * @brief Задание 2: удалить элементы с цифрой 5.
+     * @brief Р—Р°РґР°РЅРёРµ 2: СѓРґР°Р»РёС‚СЊ СЌР»РµРјРµРЅС‚С‹ СЃ С†РёС„СЂРѕР№ 5.
      */
     class Task2Exercise : public Exercise
     {
@@ -13,13 +13,13 @@ namespace miit::algebra
         using Exercise::Exercise;
 
         /**
-         * @brief Выполнить задание 2.
+         * @brief Р’С‹РїРѕР»РЅРёС‚СЊ Р·Р°РґР°РЅРёРµ 2.
          */
         void execute();
 
     private:
         /**
-         * @brief Проверка, содержит ли число цифру 5.
+         * @brief РџСЂРѕРІРµСЂРєР°, СЃРѕРґРµСЂР¶РёС‚ Р»Рё С‡РёСЃР»Рѕ С†РёС„СЂСѓ 5.
          */
         static bool contains_digit_five(int number);
     };
