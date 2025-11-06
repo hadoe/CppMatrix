@@ -15,7 +15,7 @@ namespace miit::algebra
         /**
          * @brief Выполнить задание 2.
          */
-        void execute();
+        void execute() override;
 
         /**
          * @brief Проверка, содержит ли число цифру 5.

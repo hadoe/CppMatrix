@@ -1,6 +1,7 @@
 #include "Task1Exercise.h"
 #include <algorithm>
 #include <stdexcept>
+#include <iostream>
 
 namespace miit::algebra
 {
@@ -17,6 +18,7 @@ namespace miit::algebra
                 break;
             }
         }
+        std::cout << "Результат: " << matrix.to_string() << std::endl;
     }
 
     int Task1Exercise::min() const

@@ -14,7 +14,7 @@ namespace miit::algebra
         /**
          * @brief Выполнить задание 1.
          */
-        void execute();
+        void execute() override;
 
     private:
         /**

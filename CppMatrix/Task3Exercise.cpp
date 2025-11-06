@@ -1,9 +1,10 @@
 #include "Task3Exercise.h"
 #include <cmath>
+#include <iostream>
 
 namespace miit::algebra
 {
-    Matrix Task3Exercise::execute()
+    void Task3Exercise::execute()
     {
         Matrix result(matrix.size());
         for (size_t i = 0; i < matrix.size(); ++i)
@@ -13,6 +14,7 @@ namespace miit::algebra
             else // нечетный индекс
                 result[i] = 2 * matrix[i];
         }
-        return result;
+        matrix = result;
+        std::cout << "Результат: " << matrix.to_string() << std::endl;
     }
 }

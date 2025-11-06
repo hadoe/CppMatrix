@@ -1,6 +1,7 @@
 ﻿#include "Task2Exercise.h"
 #include <cmath>
 #include <algorithm>
+#include <iostream>
 
 namespace miit::algebra
 {
@@ -24,6 +25,7 @@ namespace miit::algebra
 
         // Заменяем исходную матрицу на отфильтрованную
         matrix = new_matrix;
+        std::cout << "Результат: " << matrix.to_string() << std::endl;
     }
 
     bool Task2Exercise::contains_digit_five(int number)

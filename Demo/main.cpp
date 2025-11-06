@@ -103,13 +103,10 @@ std::unique_ptr<Generator> choose_input_method() {
 /**
  * @brief Выполнение задания 1
  */
-void execute_task1(std::unique_ptr<Generator> generator) {
+void execute_task1(std::unique_ptr<Generator> generator, size_t size) {
     if (!generator) return;
 
-    size_t size;
     std::cout << "\n=== Задание 1: Замена минимального элемента на срединный ===\n";
-    std::cout << "Введите размер матрицы (нечетное число): ";
-    std::cin >> size;
 
     if (size % 2 == 0) {
         std::cout << "Ошибка: размер должен быть нечетным!\n";
@@ -117,58 +114,51 @@ void execute_task1(std::unique_ptr<Generator> generator) {
     }
 
     Task1Exercise exercise(size, std::move(generator));
-    exercise.fill_matrix();
 
     std::cout << "Исходная матрица: " << exercise.get_matrix().to_string() << std::endl;
 
     exercise.execute();
-    std::cout << "Результат: " << exercise.get_matrix().to_string() << std::endl;
 }
 
 /**
  * @brief Выполнение задания 2
  */
-void execute_task2(std::unique_ptr<Generator> generator) {
+void execute_task2(std::unique_ptr<Generator> generator, size_t size) {
     if (!generator) return;
 
-    size_t size;
     std::cout << "\n=== Задание 2: Удаление элементов с цифрой 5 ===\n";
-    std::cout << "Введите размер матрицы: ";
-    std::cin >> size;
 
     Task2Exercise exercise(size, std::move(generator));
-    exercise.fill_matrix();
 
     std::cout << "Исходная матрица: " << exercise.get_matrix().to_string() << std::endl;
 
     exercise.execute();
-    std::cout << "Результат: " << exercise.get_matrix().to_string() << std::endl;
 }
 
 /**
  * @brief Выполнение задания 3
  */
-void execute_task3(std::unique_ptr<Generator> generator) {
+void execute_task3(std::unique_ptr<Generator> generator, size_t size) {
     if (!generator) return;
 
-    size_t size;
     std::cout << "\n=== Задание 3: Трансформация матрицы ===\n";
-    std::cout << "Введите размер матрицы: ";
-    std::cin >> size;
 
     Task3Exercise exercise(size, std::move(generator));
-    exercise.fill_matrix();
 
     std::cout << "Исходная матрица: " << exercise.get_matrix().to_string() << std::endl;
-
-    Matrix result = exercise.execute();
-    std::cout << "Результат: " << result.to_string() << std::endl;
+    
+    exercise.execute();
 }
 
 /**
  * @brief Интерактивный режим работы
  */
 void run_interactive() {
+
+    size_t size;
+    std::cout << "Введите размер матрицы: ";
+    std::cin >> size;
+
     TaskChoice choice;
 
     do {
@@ -186,24 +176,25 @@ void run_interactive() {
         switch (choice) {
         case TaskChoice::TASK1: {
             auto generator = choose_input_method();
-            if (generator) execute_task1(std::move(generator));
-            exit(0);
+            if (generator) execute_task1(std::move(generator), size);
+            break;
         }
         case TaskChoice::TASK2: {
             auto generator = choose_input_method();
-            if (generator) execute_task2(std::move(generator));
-            exit(0);
+            if (generator) execute_task2(std::move(generator), size);
+            break;
         }
         case TaskChoice::TASK3: {
             auto generator = choose_input_method();
-            if (generator) execute_task3(std::move(generator));
-            exit(0);
+            if (generator) execute_task3(std::move(generator), size);
+            break;
         }
         case TaskChoice::EXIT:
+            std::cout << "Выход из программы.\n";
             return;
         default:
             std::cout << "Неверный ввод\n";
-            exit(0);
+            break;
         }
     } while (choice != TaskChoice::EXIT);
 }

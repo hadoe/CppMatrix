@@ -154,7 +154,6 @@ namespace MatrixTest
         {
             auto generator = std::make_unique<miit::algebra::ConstantGenerator>(5);
             miit::algebra::Task1Exercise exercise(5, std::move(generator));
-            exercise.fill_matrix();
             exercise.execute();
 
             const miit::algebra::Matrix& result = exercise.get_matrix();
@@ -169,7 +168,6 @@ namespace MatrixTest
         {
             auto generator = std::make_unique<miit::algebra::ConstantGenerator>(1);
             miit::algebra::Task1Exercise exercise(4, std::move(generator));
-            exercise.fill_matrix();
 
             auto func = [&exercise]() { exercise.execute(); };
             Assert::ExpectException<std::runtime_error>(func);
@@ -180,7 +178,6 @@ namespace MatrixTest
             std::istringstream input("1 3 2 4 5");
             auto generator = std::make_unique<miit::algebra::IStreamGenerator>(input);
             miit::algebra::Task1Exercise exercise(5, std::move(generator));
-            exercise.fill_matrix();
 
             exercise.execute();
             const miit::algebra::Matrix& result = exercise.get_matrix();
@@ -212,7 +209,6 @@ namespace MatrixTest
             std::istringstream input("5 10 15 20 25 30");
             auto generator = std::make_unique<miit::algebra::IStreamGenerator>(input);
             miit::algebra::Task2Exercise exercise(6, std::move(generator));
-            exercise.fill_matrix();
 
             exercise.execute();
             const miit::algebra::Matrix& result = exercise.get_matrix();
@@ -227,7 +223,6 @@ namespace MatrixTest
         {
             auto generator = std::make_unique<miit::algebra::ConstantGenerator>(5);
             miit::algebra::Task2Exercise exercise(3, std::move(generator));
-            exercise.fill_matrix();
 
             exercise.execute();
             const miit::algebra::Matrix& result = exercise.get_matrix();
@@ -244,14 +239,15 @@ namespace MatrixTest
             std::istringstream input("1 2 3 4");
             auto generator = std::make_unique<miit::algebra::IStreamGenerator>(input);
             miit::algebra::Task3Exercise exercise(4, std::move(generator));
-            exercise.fill_matrix();
 
-            miit::algebra::Matrix result = exercise.execute();
+            exercise.execute();
 
-            Assert::AreEqual(1, result[0]);  
-            Assert::AreEqual(4, result[1]);  
-            Assert::AreEqual(9, result[2]);  
-            Assert::AreEqual(8, result[3]);  
+            const miit::algebra::Matrix& matrix = exercise.get_matrix();
+
+            Assert::AreEqual(1, matrix[0]);  
+            Assert::AreEqual(4, matrix[1]);  
+            Assert::AreEqual(9, matrix[2]);  
+            Assert::AreEqual(8, matrix[3]);  
         }
 
         TEST_METHOD(Task3_Negatives)
@@ -259,13 +255,14 @@ namespace MatrixTest
             std::istringstream input("-2 -3 4");
             auto generator = std::make_unique<miit::algebra::IStreamGenerator>(input);
             miit::algebra::Task3Exercise exercise(3, std::move(generator));
-            exercise.fill_matrix();
 
-            miit::algebra::Matrix result = exercise.execute();
+            exercise.execute();
 
-            Assert::AreEqual(4, result[0]);   
-            Assert::AreEqual(-6, result[1]);  
-            Assert::AreEqual(16, result[2]);  
+            const miit::algebra::Matrix& matrix = exercise.get_matrix();
+
+            Assert::AreEqual(4, matrix[0]);   
+            Assert::AreEqual(-6, matrix[1]);  
+            Assert::AreEqual(16, matrix[2]);  
         }
     };
 
@@ -276,7 +273,6 @@ namespace MatrixTest
         {
             auto generator = std::make_unique<miit::algebra::ConstantGenerator>(7);
             miit::algebra::Task1Exercise exercise(3, std::move(generator));
-            exercise.fill_matrix();
 
             const miit::algebra::Matrix& matrix = exercise.get_matrix();
             Assert::AreEqual(size_t(3), matrix.size());

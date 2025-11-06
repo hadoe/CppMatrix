@@ -29,14 +29,23 @@ namespace miit::algebra
          */
         virtual ~Exercise() = default;
 
+
         /**
-         * @brief Заполнить матрицу значениями из генератора.
+         * @brief Выполнение задания.
          */
-        void fill_matrix();
+
+        virtual void execute() = 0;
 
         /**
          * @brief Доступ к внутренней матрице (только чтение).
          */
         const Matrix& get_matrix() const;
+        
+    private:
+        /**
+         * @brief Заполнить матрицу значениями из генератора.
+         */
+        void fill_matrix();
+
     };
 }

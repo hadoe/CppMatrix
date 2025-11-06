@@ -15,6 +15,6 @@ namespace miit::algebra
          * @brief Выполнить задание 3.
          * @return Трансформированная матрица.
          */
-        Matrix execute();
+        void execute() override;
     };
 }
