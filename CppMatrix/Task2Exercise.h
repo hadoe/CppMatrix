@@ -17,7 +17,6 @@ namespace miit::algebra
          */
         void execute();
 
-    private:
         /**
          * @brief Проверка, содержит ли число цифру 5.
          */
