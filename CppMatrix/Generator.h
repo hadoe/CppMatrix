@@ -1,21 +1,25 @@
-#pragma once
+﻿#pragma once
 
 namespace miit::algebra
 {
-	/**
-	* @brief
-	*/
-	class Generator
-	{
-	public:
-		/**
-		* @brief
-		*/
-		virtual ~Generator() = 0 {};
+    /**
+     * @brief Абстрактный интерфейс генератора целых чисел.
+     *
+     * Реализации должны предоставлять метод generate(),
+     * возвращающий очередное целое значение.
+     */
+    class Generator
+    {
+    public:
+        /**
+         * @brief Виртуальный деструктор интерфейса.
+         */
+        virtual ~Generator() = default;
 
-		/**
-		* @brief
-		*/
-		virtual int generate() = 0;
-	};
+        /**
+         * @brief Сгенерировать очередное значение.
+         * @return Целое число, полученное из источника генератора.
+         */
+        virtual int generate() = 0;
+    };
 }
